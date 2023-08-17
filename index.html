@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Restaurant Order</h1>
+    <p>Here the user can order food and drinks from a menu. To limit the amount of choices in the drop-down list, the user first filter by chosing between 'Dinner', 'Drink' or 'Dessert'.</p>
+
+    <div class="order-container">
+        <p>Order here:</p>
+        <form v-on:submit.prevent="orderItem">
+            <input type="radio"><label>Dinner</label>
+            <input type="radio"><label>Drink</label>
+            <input type="radio"><label>Dessert</label>
+            <select v-show="categoryChosen">
+                <option v-for="food in foodList" v-bind:value="food">{{food.name}}</option>
+            </select>
+            <input type="number">
+            <button type="submit">Order</button>
+        </form>
+
+        <hr>
+        <p>Your Order:</p>
+        <div v-for="food in orderList">{{food.name}}, {{food.amount}}, {{food.url}}</div>
+
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    categoryChosen: false,
+                    category: null,
+                    food: null, 
+                    amount: null,
+                    foodList: [
+                        {name: 'Burrito'},
+                        {name: 'Pizza'},
+                        {name: 'Pho Soup'},
+                        {name: 'Spaghetti'},
+                        {name: 'Fish'},
+                        {name: 'Cake'},
+                        {name: 'Rice'},
+                        {name: 'Salad'},
+                        {name: 'Coke'},
+                        {name: 'Green Soda'},
+                        {name: 'Doughnut'},
+                        {name: 'Ice Cream'},
+                        {name: 'Lemonade'},
+                        {name: 'Pancake'},
+                        {name: 'Water'}
+                    ],
+                    orderList: [
+
+                    ]
+                }
+            },
+            methods: {
+                orderItem() {
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
