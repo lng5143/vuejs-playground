@@ -15,10 +15,10 @@
             <input type="radio"><label>Dinner</label>
             <input type="radio"><label>Drink</label>
             <input type="radio"><label>Dessert</label>
-            <select v-show="categoryChosen">
+            <select v-show="categoryChosen" v-model="food">
                 <option v-for="food in foodList" v-bind:value="food">{{food.name}}</option>
             </select>
-            <input type="number">
+            <input type="number" v-show="foodChosen" v-model="amount">
             <button type="submit">Order</button>
         </form>
 
@@ -60,7 +60,8 @@
             },
             methods: {
                 orderItem() {
-
+                    food = this.food;
+                    amount = this.amount;
                 }
             }
         })
