@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>Enter 2 numbers.</p>
+        <input type="number" v-model="firstNum"><label>First Num</label>
+        <input type="number" v-model="secondNum"><label>Second Num</label>
+        <p>{{ message }}</p>
+        <p>Difference between the 2 last second number: {{ diff }}</p>
+        <p></p>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    firstNum: 0,
+                    secondNum: 0,
+                    message: null,
+                    diff: 0
+                }
+            },
+            computed: {
+                prod() {
+                    return firstNum * secondNum;
+                }
+            },
+            watch: {
+                firstNum(val) {
+                    if (val % 2 == 0) {
+                        this.message = "First number is an even number."
+                    }
+                    else {
+                        this.message = "First number is an odd number."
+                    }
+                },
+                secondNum(newVal, oldVal) {
+                    this.diff = newVal - oldVal;
+                }
+            },
+            methods: {
+
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>
